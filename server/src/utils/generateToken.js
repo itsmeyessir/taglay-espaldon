@@ -9,10 +9,19 @@ const generateToken = (res, userId, rememberMe = false) => {
     expiresIn, 
   });
 
+  const isProduction = process.env.NODE_ENV === 'production';
+  
+  console.log('--- Cookie Generation Debug ---');
+  console.log('NODE_ENV:', process.env.NODE_ENV);
+  console.log('Is Production:', isProduction);
+  console.log('SameSite:', isProduction ? 'none' : 'strict');
+  console.log('Secure:', isProduction);
+  console.log('-------------------------------');
+
   res.cookie('token', token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
-    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict', // Allow cross-site usage in production
+    secure: isProduction, // Use secure cookies in production
+    sameSite: isProduction ? 'none' : 'strict', // Allow cross-site usage in production
     maxAge, 
   });
 };

@@ -7,6 +7,13 @@ const protect = async (req, res, next) => {
   // Read the JWT from the 'token' cookie
   token = req.cookies.token;
 
+  console.log('--- Auth Debug ---');
+  console.log('Cookies Received:', req.cookies);
+  console.log('Token Found:', !!token);
+  console.log('Origin:', req.headers.origin);
+  console.log('User-Agent:', req.headers['user-agent']);
+  console.log('------------------');
+
   if (token) {
     try {
       // Verify token
