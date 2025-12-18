@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# TypeScript files (kept for future migration, using JSX for now)
+src/**/*.ts
+src/**/*.tsx
+!src/vite-env.d.ts
+tsconfig.json
+tsconfig.*.json
