@@ -11,6 +11,9 @@ const dashboardRoutes = require('./routes/dashboardRoutes');
 
 const app = express();
 
+// Trust proxy is required for secure cookies (SameSite=None) to work behind Render/Vercel load balancers
+app.set('trust proxy', 1);
+
 // Middleware
 app.use(express.json()); // Parse JSON bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
