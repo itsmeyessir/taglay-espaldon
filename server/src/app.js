@@ -16,7 +16,7 @@ app.use(express.json()); // Parse JSON bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
 app.use(cookieParser()); // Parse cookies
 app.use(cors({
-  origin: 'http://localhost:5173', // Allow frontend (Vite default port)
+  origin: process.env.FRONTEND_URL || 'http://localhost:5173', // Allow frontend
   credentials: true // Allow cookies to be sent
 })); 
 app.use(helmet()); // Set security headers

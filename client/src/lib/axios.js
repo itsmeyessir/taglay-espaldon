@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: '/api', // Vite proxy will redirect this to http://127.0.0.1:5001/api
+  baseURL: import.meta.env.VITE_API_URL || '/api',
   withCredentials: true, // Crucial for sending and receiving HttpOnly cookies
   headers: {
     'Content-Type': 'application/json',
