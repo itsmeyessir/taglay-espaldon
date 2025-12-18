@@ -1,15 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import ArticleList from '../components/ArticleList';
-import articles from '../article-content';
+import ArticleList from '../../components/ArticleList';
+import { fetchArticles } from '../../services/ArticleService';
 
 function ArticleListPage() {
   const [articleList, setArticleList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    setArticleList(articles);
-    setIsLoading(false);
+    const loadArticles = async () => {
+      try {
+        setIsLoading(true);
+        const { data } = await fetchArticles();
+        const activeArticles = (data?.articles || []).filter((article) => article.isActive);
+        setArticleList(activeArticles);
+      } catch (err) {
+        console.error('Error loading articles', err);
+        setError('Unable to load articles right now.');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadArticles();
   }, []);
 
   if (isLoading) {
@@ -31,7 +45,9 @@ function ArticleListPage() {
         </p>
       </div>
 
-      {articleList.length > 0 ? (
+      {error ? (
+        <p className="muted">{error}</p>
+      ) : articleList.length > 0 ? (
         <ArticleList articles={articleList} />
       ) : (
         <p className="muted">No articles available right now.</p>

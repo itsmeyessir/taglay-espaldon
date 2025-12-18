@@ -1,9 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Navbar.css';
 import logo from '../assets/react.svg';
 import Button from './Button';
 function Navbar() {
+    const navigate = useNavigate();
+
+    const handleLoginClick = () => {
+        navigate('auth/signin');
+    };
     return (
         <nav>
             <div className="logo">
@@ -21,7 +26,7 @@ function Navbar() {
                     <Link to='/articles'>Articles</Link>
                 </li>
             </ul>
-            <Button>Login</Button>
+            <Button onClick={handleLoginClick}>Login</Button>
         </nav>
     )
 }

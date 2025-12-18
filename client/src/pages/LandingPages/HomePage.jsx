@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import articles from '../article-content';
+import articles from '../../article-content';
 
 function HomePage() {
   const featuredArticles = articles.slice(0, 3);
