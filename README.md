@@ -37,7 +37,7 @@ Clone the repository and install dependencies for both applications.
 
 ```bash
 # Clone the repo
-git clone https://github.com/your-username/taglay.git
+git clone https://github.com/itsmeyessir/taglay.git
 cd taglay
 
 # Install Server Dependencies
@@ -45,7 +45,7 @@ cd server
 npm install
 
 # Install Client Dependencies
-cd ../client
+cd client
 npm install
 ```
 
